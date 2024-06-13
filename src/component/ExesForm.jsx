@@ -1,26 +1,76 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa6";
 import styled from "styled-components";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { ExpenseContext } from "../context/ExpenseContext";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { getExpense, postExpense } from "../axios/ExpenseApi";
+import { v4 as uuidv4 } from "uuid";
 
-const ExesForm = ({ onInsert }) => {
+const ExesForm = () => {
+  const navigate = useNavigate();
   const [date, setDate] = useState(""); // 항목
   const [item, setItem] = useState(""); // 항목
   const [amount, setAmount] = useState(""); // 금액
   const [desc, setDesc] = useState(""); // 내용
   const [open, setOpen] = useState(false); //입력창
+  const { isAuthenticated } = useContext(AuthContext);
+  const { selectedMonth } = useContext(ExpenseContext);
+  const { userInfo } = useContext(AuthContext);
 
-  const onSubmit = useCallback((e) => {
-    if (item === "" || amount === "" || desc === "") {
-      alert("빈칸을 채워주세요");
-      return;
-    }
-    e.preventDefault();
-    onInsert(date, item, amount, desc);
-    setItem("");
-    setAmount("");
-    setDesc("");
-    setOpen(false);
+  //데이터 생성1
+  const queryClient = new QueryClient();
+
+  //데이터 생성2
+  const mutation = useMutation({
+    mutationFn: postExpense,
+    onSuccess: (newEx) => {
+      console.log(newEx);
+      queryClient.invalidateQueries(["expenses"]);
+      navigate(0);
+    },
   });
+
+  const onInsert = useCallback(
+    (date, item, amount, desc) => {
+      const newExes = {
+        id: uuidv4(),
+        date,
+        item,
+        amount,
+        desc,
+        month: selectedMonth,
+        user: userInfo.id,
+      };
+
+      //데이터 생성3
+      mutation.mutate(newExes);
+    },
+    [mutation, userInfo]
+  );
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (item === "" || amount === "" || desc === "") {
+        alert("빈칸을 채워주세요");
+        return;
+      }
+      onInsert(date, item, amount, desc);
+      setItem("");
+      setAmount("");
+      setDesc("");
+      setOpen(false);
+    },
+    [date, item, amount, desc]
+  );
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div>

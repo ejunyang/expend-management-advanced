@@ -7,7 +7,7 @@ const ExesItem = ({ exe }) => {
   const { id, date, item, amount, desc } = exe;
 
   const onDetailButtonHandler = (id) => {
-    navigate(`/detail/${id}`, { state: { exe } }); //페이지 간 props 전달 -> Detail.jsx
+    navigate(`/detail/${id}`);
   };
   return (
     <>

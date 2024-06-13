@@ -1,0 +1,211 @@
+{
+  "expenses": [
+    {
+      "id": "f70630fd-852d-4566-a830-9d318c22046a",
+      "date": "2024-06-18",
+      "item": "📚",
+      "amount": 50000,
+      "desc": "리액트",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "1aa8dae8-5238-470e-a38e-223f2338a248",
+      "date": "2024-06-18",
+      "item": "🎬",
+      "amount": 8000,
+      "desc": "쉬고십따",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "d122f317-2b82-4fb8-8f7b-4e23f70068f6",
+      "date": "2024-06-24",
+      "item": "📚",
+      "amount": 5000,
+      "desc": "바로 등록?",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "e488ef07-2c45-44f2-b527-7a4fe8973fc7",
+      "date": "2024-06-19",
+      "item": "🧗🏻",
+      "amount": 80000,
+      "desc": "오늘부터 진짜운동",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "d7375317-0257-42aa-9ffe-2ce237ad747e",
+      "date": "2024-06-18",
+      "item": "👕",
+      "amount": 90000,
+      "desc": "바로 등록되나요~~",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "4ea32db2-5a0a-4d93-8362-c6ad253f2a45",
+      "date": "2024-06-11",
+      "item": "🍿",
+      "amount": 6000,
+      "desc": "등록!",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "aabaedb3-3a5d-47c6-8d18-c535f1d57dae",
+      "date": "2024-06-13",
+      "item": "👕",
+      "amount": 7000,
+      "desc": "다시",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "466d940c-e421-4f33-93a3-2537e920643d",
+      "date": "2024-06-03",
+      "item": "🎬",
+      "amount": 8000,
+      "desc": "닷...",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "9e87930a-bee4-494f-93cb-9150ca09da54",
+      "date": "2024-06-18",
+      "item": "📚",
+      "amount": 1000,
+      "desc": "하이",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "1a8be31f-7302-4dbe-9191-9343e4fa8ed5",
+      "date": "2024-06-10",
+      "item": "🧗🏻",
+      "amount": 11000,
+      "desc": "ㅇㅇ",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "23939624-8add-4b0d-b1ac-921ede437f39",
+      "date": "2024-06-10",
+      "item": "👕",
+      "amount": 9000,
+      "desc": "gkdlfn",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "68c513dd-e0bb-410b-b5d8-c0299887c7a0",
+      "date": "2024-06-19",
+      "item": "👕",
+      "amount": 5000,
+      "desc": "제발",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "f5e93191-fb71-46ae-bb8f-5b4ad471bafe",
+      "date": "2024-06-12",
+      "item": "📚",
+      "amount": 6000,
+      "desc": "데스트",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "5cc40fc7-1331-488e-9174-a2366c808472",
+      "date": "2024-06-17",
+      "item": "👕",
+      "amount": 5000,
+      "desc": "지금은?",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "52381c4e-7e01-48d3-ad00-67c58bdbea0f",
+      "date": "2024-06-10",
+      "item": "👕",
+      "amount": 5000,
+      "desc": "새로",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "27a56179-54d8-4f4c-a7ac-5e98c52966d3",
+      "date": "2024-06-11",
+      "item": "📚",
+      "amount": 100,
+      "desc": "되라",
+      "month": 5,
+      "user": "wnswns"
+    },
+    {
+      "id": "fc8648bf-e921-47e9-a108-facf2950fc68",
+      "date": "2024-07-03",
+      "item": "🍿",
+      "amount": 5000,
+      "desc": "되라얍",
+      "month": 5,
+      "user": "dlwns"
+    },
+    {
+      "id": "bc16b0e2-147d-4108-9fb9-ddc6a49359a0",
+      "date": "2024-06-18",
+      "item": "👕",
+      "amount": 5000,
+      "desc": "닉네임 변경",
+      "month": 5,
+      "user": "dlwns"
+    },
+    {
+      "id": "9eee0498-b558-4e95-b1b5-24ef32a925de",
+      "date": "2024-06-27",
+      "item": "📚",
+      "amount": 5000,
+      "desc": "다시",
+      "month": 5,
+      "user": "dlwns"
+    },
+    {
+      "id": "00a9b25b-b392-4b4d-a171-fac0ee898fbc",
+      "date": "2024-06-25",
+      "item": "🎬",
+      "amount": 5000,
+      "desc": "hahaha",
+      "month": 5,
+      "user": "dlwns"
+    },
+    {
+      "id": "52e85d35-e4c8-48e1-8343-69dfaeeef701",
+      "date": "2024-06-20",
+      "item": "👕",
+      "amount": 5000,
+      "desc": "ㅔㅁ롱",
+      "month": 5,
+      "user": "dlwns"
+    },
+    {
+      "id": "4a5b9384-8037-4329-bbfa-e08ecf746e59",
+      "date": "2024-06-19",
+      "item": "📚",
+      "amount": 5000,
+      "desc": "네비게이트",
+      "month": 5,
+      "user": "dlwns"
+    },
+    {
+      "id": "6c7c851c-bdf7-4bef-a3db-50311cb3a8eb",
+      "date": "2024-07-22",
+      "item": "🍿",
+      "amount": 25000,
+      "desc": "생일케이크",
+      "month": 6,
+      "user": "dlwns"
+    }
+  ]
+}

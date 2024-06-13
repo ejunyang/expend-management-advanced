@@ -1,7 +1,5 @@
 body {
   background-color: #f4f5f7;
-  display: flex;
-  justify-content: center;
 }
 .buttonListStyle {
   height: 40px;
@@ -15,4 +13,9 @@ body {
   flex-grow: 1;
   margin: 10px;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

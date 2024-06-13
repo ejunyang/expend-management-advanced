@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { Provider } from "react-redux";
-import store from "./redux/config/cofigStore.js";
+import QueryClientSetup from "./QueryClientSetup.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
+  <QueryClientSetup>
     <App />
-  </Provider>
+  </QueryClientSetup>
 );

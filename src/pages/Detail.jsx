@@ -1,55 +1,78 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { removeExpense, modifyExpense } from "../redux/slices/expense";
+import { getSelected, putExpense, deleteExpense } from "../axios/ExpenseApi";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../context/AuthContext";
+import { ExpenseContext } from "../context/ExpenseContext";
 
 const Detail = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); //페이지 이동
-  const dispatch = useDispatch();
-  const allExpenses = useSelector((state) => state.expense.expenseList);
+  const navigate = useNavigate();
+  const { userInfo } = useContext(AuthContext);
+  const { selectedMonth } = useContext(ExpenseContext);
+  const queryClient = new QueryClient();
 
-  // 특정 id에 해당하는 지출 항목만 가져오기
-  let exe = null;
-  //month = key 값(인덱스 역할)
-  for (const month in allExpenses) {
-    //각 월의 지출내역 데이터 할당
-    const expensesOfMonth = allExpenses[month];
-    exe = expensesOfMonth.find((expense) => expense.id === id);
-    if (exe) break; // id에 해당하는 항목을 찾았으면 반복문 중단
-  }
+  //해당 지출내역
+  const {
+    data: exe = [],
+    isLoading,
+    error,
+  } = useQuery({ queryKey: ["expenses", id], queryFn: getSelected });
 
-  const dateRef = useRef(exe.date); //초기값
+  const dateRef = useRef(exe.date);
   const itemRef = useRef(exe.item);
   const descRef = useRef(exe.desc);
   const amountRef = useRef(exe.amount);
 
-  const onRemove = useCallback(() => {
-    if (confirm("정말 삭제하시겠습니까?") == true) {
-      dispatch(removeExpense({ id }));
-      navigate("/");
-    } else {
-      return false;
+  useEffect(() => {
+    if (exe) {
+      dateRef.current.value = exe.date || "";
+      itemRef.current.value = exe.item || "";
+      descRef.current.value = exe.desc || "";
+      amountRef.current.value = exe.amount || "";
     }
+  }, [exe]);
+
+  const mutationEdit = useMutation({
+    mutationFn: putExpense,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["expenses"]);
+      navigate("/");
+    },
   });
+
+  const mutationDelete = useMutation({
+    mutationFn: deleteExpense,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["expenses"]);
+      navigate("/");
+    },
+  });
+
+  const onRemove = useCallback(
+    (id) => {
+      if (confirm("정말 삭제하시겠습니까?") == true) {
+        mutationDelete.mutate(id);
+      }
+    },
+    [exe]
+  );
 
   const onModify = useCallback(() => {
-    dispatch(
-      modifyExpense({
-        modifiedData: {
-          id: exe.id,
-          date: dateRef.current.value,
-          item: itemRef.current.value,
-          amount: +amountRef.current.value,
-          desc: descRef.current.value,
-        },
-      })
-    );
+    const modifiedData = {
+      id: exe.id,
+      date: dateRef.current.value,
+      item: itemRef.current.value,
+      amount: +amountRef.current.value,
+      desc: descRef.current.value,
+      month: selectedMonth,
+      user: userInfo.id,
+    };
 
-    //navigate(-1);
-  });
+    mutationEdit.mutate(modifiedData);
+  }, [exe, userInfo, selectedMonth, mutationEdit]);
 
   return (
     <>
@@ -72,8 +95,10 @@ const Detail = () => {
         </ExeItem>
 
         <DetailContainer>
+          <label>사용자</label>
+          <StInput defaultValue={exe.user} readOnly />
           <label>날짜</label>
-          <StInput ref={dateRef} type="date" defaultValue={exe.date} />
+          <StInput ref={dateRef} defaultValue={exe.date} />
           <label>항목</label>
           <StSelect ref={itemRef} defaultValue={exe.item}>
             <option defaultValue={exe.item}>🎬</option>
@@ -86,11 +111,11 @@ const Detail = () => {
           <label>내용</label>
           <StInput ref={descRef} defaultValue={exe.desc} />
           <label>금액</label>
-          <StInput ref={amountRef} defaultValue={+exe.amount} />
+          <StInput ref={amountRef} defaultValue={exe.amount} />
 
           <ButtonWrap>
-            <EditButton onClick={onModify}>수정</EditButton>
-            <RemoveButton onClick={onRemove}>삭제</RemoveButton>
+            <EditButton onClick={() => onModify(id)}>수정</EditButton>
+            <RemoveButton onClick={() => onRemove(id)}>삭제</RemoveButton>
           </ButtonWrap>
         </DetailContainer>
       </StContainer>
@@ -107,12 +132,12 @@ const TopWrap = styled.div`
 `;
 
 const StContainer = styled.section`
-  max-width: 1200px;
+  max-width: 660px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  margin: 30px 0;
+  margin: 30px auto;
 `;
 
 const H1 = styled.h1`
@@ -173,20 +198,20 @@ const StInput = styled.input`
   padding: 10px;
 `;
 
-const StSelect = styled.select`
-  height: 50px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-`;
-
 const ButtonWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 20px;
   margin: 30px 0;
+`;
+
+const StSelect = styled.select`
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
 `;
 
 const EditButton = styled.button`
