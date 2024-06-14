@@ -1,5 +1,4 @@
 {
-  "homepage": "https://ejunyang.github.io/expend-management-advanced/",
   "name": "account-book-app",
   "private": true,
   "version": "0.0.0",
@@ -9,9 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "yarn build",
-    "deploy": "yarn gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
