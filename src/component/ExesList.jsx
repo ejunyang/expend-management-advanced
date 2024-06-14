@@ -17,7 +17,6 @@ const ExesList = () => {
   } = useQuery({
     queryKey: ["expenses"],
     queryFn: getExpense,
-    refetchOnWindowFocus: true,
   });
 
   const filteredExpenses = userInfo

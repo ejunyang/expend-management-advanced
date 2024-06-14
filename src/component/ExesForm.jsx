@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ExpenseContext } from "../context/ExpenseContext";
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { getExpense, postExpense } from "../axios/ExpenseApi";
 import { v4 as uuidv4 } from "uuid";
 
@@ -20,15 +20,13 @@ const ExesForm = () => {
   const { userInfo } = useContext(AuthContext);
 
   //데이터 생성1
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   //데이터 생성2
   const mutation = useMutation({
     mutationFn: postExpense,
-    onSuccess: (newEx) => {
-      console.log(newEx);
+    onSuccess: () => {
       queryClient.invalidateQueries(["expenses"]);
-      navigate(0);
     },
   });
 
