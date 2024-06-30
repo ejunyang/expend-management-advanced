@@ -1,8 +1,19 @@
-# React + Vite
+## 개인지출관리 어플리케이션
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![react](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=222222)
+![vercel](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![styledcomponent](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white)
 
-Currently, two official plugins are available:
+### ✨ 업데이트 기능
++ 로그인/회원가입 기능
++ 마이페이지 추가
++ 프로필 사진, 닉네임 변경
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+### 📌 기존 기능
++ 월별 지출 내역 CRUD
++ 마지막으로 선택한 월 로컬스토리지 저장
+
+
+
+
